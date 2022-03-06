@@ -1,11 +1,6 @@
-# KDEP: Knowledge Distillation as Efficient Pretraining
+# Knowledge Distillation as Efficient Pretraining: Faster Convergence, Higher Data-efficiency, and Better Transferability
 
 This repository contains the code and models necessary to replicate the results of our paper:
-
-<!--**Do Adversarially Robust ImageNet Models Transfer Better?** <br>-->
-<!--*Hadi Salman\*, Andrew Ilyas\*, Logan Engstrom, Ashish Kapoor, Aleksander Madry* <br>-->
-<!--Paper: https://arxiv.org/abs/2007.08489 <br>-->
-<!--Blog post:  https://www.microsoft.com/en-us/research/blog/adversarial-robustness-as-a-prior-for-better-transfer-learning/ <br>-->
 
 ```bibtex
 @inproceedings{he2022knowledge,
@@ -16,6 +11,13 @@ This repository contains the code and models necessary to replicate the results 
   year={2022}
 }
 ```
+
+## Abstract
+
+Large-scale pre-training has been proven to be crucial for various computer vision tasks.
+However, with the increase of pre-training data amount, model architecture amount, and the private/inaccessible data, it is not very efficient or possible to pre-train all the model architectures on large-scale datasets. In this work, we investigate an alternative strategy for pre-training, namely Knowledge Distillation as Efficient Pre-training (**KDEP**), aiming to efficiently transfer the learned feature representation from existing pre-trained models to new student models for future downstream tasks. We observe that existing Knowledge Distillation (KD) methods are unsuitable towards pre-training since they normally distill the logits that are going to be discarded when transferred to downstream tasks. To resolve this problem, we propose a feature-based KD method with non-parametric feature dimension aligning. Notably, our method performs comparably with supervised pre-training counterparts in 3 downstream tasks and 9 downstream datasets requiring **10x** less data and **5x** less pre-training time.
+
+![pics-cropped-1](pics-cropped-1.png)
 
 ## Getting started
 1.  Clone our repo: `git clone https://github.com/CVMI-Lab/KDEP.git`
