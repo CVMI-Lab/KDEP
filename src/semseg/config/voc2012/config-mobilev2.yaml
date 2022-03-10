@@ -1,0 +1,87 @@
+DATA:
+#  local_prefix: /root/data/              # hu-22
+  local_prefix: /opt/tiger/semseg/dataset/            # hu-22
+  data_root: voc2012
+  train_list: voc2012/list/trainaug_semseg.txt
+  val_list: voc2012/list/val.txt
+  test_list: voc2012/list/val.txt
+  classes: 21
+
+TRAIN:
+  arch: mobilev2
+  layers: 18
+  sync_bn: True  # adopt syncbn or not
+#  train_h: 713
+  train_h: 512
+#  train_w: 713
+  train_w: 512
+  scale_min: 0.5  # minimum random scale
+  scale_max: 1.5  # maximum random scale
+  rotate_min: -10  # minimum random rotate
+  rotate_max: 10  # maximum random rotate
+  zoom_factor: 8  # zoom factor for final prediction during training, be in [1, 2, 4, 8]
+  ignore_label: 255
+  aux_weight: 0.4
+  train_gpu: [4,5]
+  greedytrain_gpu: [2]
+  workers: 8  # data loader workers
+  batch_size: 16  # batch size for training
+  unlabelled_batch_size: 8
+  batch_size_val: 8  # batch size for validation during training, memory and speed tradeoff
+  base_lr: 0.01
+  epochs: 50
+  start_epoch: 0
+  power: 0.9
+  momentum: 0.9
+  weight_decay: 0.0001
+  manual_seed: 1
+  print_freq: 10
+  save_freq: 10
+  save_path: exp/
+  initpath: initmodel/ex56.3.ckpt.seg
+  teacher_weight:
+  weight: #initmodel/ex60.5.1_0.68_train_epoch_400.pth #initmodel/greedy_train_epoch_200.pth # path to initial weight (default: none)
+  resume:  #initmodel/ST_iter0_0.6546_ex35.10_cf0.96_train_epoch_400.pth   # path to latest checkpoint (default: none)
+  evaluate: True  # evaluate on validation set, extra gpu memory needed and small batch_size_val is recommend
+  evaluate_start: 46
+  evaluate_freq: 2
+  evaluate_full_size: True
+  evaluate_previous_best_val_mIou: 0.00
+
+  sup_loss_method: 'CE'   # 'MSE' 'CE' 'lovasz'
+  consistency_lambda: 1.0
+  only_label: False
+
+  optim_type: sgd # or sgd
+
+
+Distributed:
+  dist_url: tcp://127.0.0.1:6788
+#  dist_url: tcp://127.0.0.1:6796
+#  dist_url: tcp://127.0.0.1:6789
+#  dist_url: tcp://127.0.0.1:6786
+  dist_backend: 'nccl'
+  multiprocessing_distributed: True
+  world_size: 1
+  rank: 0
+  use_apex: True
+  opt_level: 'O0'
+  keep_batchnorm_fp32:
+  loss_scale:
+
+TEST:
+  split: val  # split in [train, val and test]
+  base_size: 512  # based size for scaling
+#  test_h: 713
+  test_h: 512
+#  test_w: 713
+  test_w: 512
+  scales: [1.0]  # evaluation scales, ms as [0.5, 0.75, 1.0, 1.25, 1.5, 1.75]
+  has_prediction: False  # has prediction already or not
+  index_start: 0  # evaluation start index in list
+  index_step: 0  # evaluation step index in list, 0 means to end
+  test_gpu: [4]
+  model_path:  exp/ex36.7/model/train_epoch_400.pth  # evaluation model path
+  save_folder: exp/  # results save folder
+  colors_path: data/voc2012/voc2012_colors.txt  # path of dataset colors
+  names_path: data/voc2012/voc2012_names.txt # path of dataset category names
