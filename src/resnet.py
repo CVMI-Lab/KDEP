@@ -568,11 +568,12 @@ class ResNet_feat_svd_pre_relu(nn.Module):
             feat = x - self.svd_mean.cuda()
             feat = torch.matmul(feat, self.svd_v[:, :512].cuda())  # B 512
             # # feat = torch.matmul(feat, self.svd_v[:, :1280].cuda())  # B 1280
-            # #
-            # # # -------- FCT2
-            # feat = torch.sign(feat) * torch.pow(torch.abs(feat / 0.1), 1 / 3)  # FCT2
-            # feat = torch.sign(feat) * torch.pow(torch.abs(feat / 0.03), 1 / 3)  # FCT2
-            # feat = torch.sign(feat) * torch.pow(torch.abs(feat / 0.2), 1 / 2)  # FCT2
+
+
+            # # # -------- PTS Function Processing
+            feat = torch.sign(feat) * torch.pow(torch.abs(feat / 0.1), 1 / 3)
+            # feat = torch.sign(feat) * torch.pow(torch.abs(feat / 0.03), 1 / 3)
+            # feat = torch.sign(feat) * torch.pow(torch.abs(feat / 0.2), 1 / 2)
 
             # ----------- Var matching
             # ---- step1:  all feat channels to have the same variance
