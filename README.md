@@ -65,13 +65,13 @@ For object detection datasets, please refer to [Detectron2](https://github.com/f
 
 ## Pre-training with KDEP
 
-1. Download teacher models ([Download](https://drive.google.com/drive/folders/1iidVRanEeFXxOJcfThQIiHdJygxHEe7y?usp=sharing)), and put them under `pretrained-models/` .
+1. Download teacher models ([Download](https://connecthkuhk-my.sharepoint.com/:f:/g/personal/ruifeihe_connect_hku_hk/Es4xT6QzDi9JtkFmmqXIWF4B-MAxG7z6oIDqtrZ88m5MpA?e=Jh19d1)), and put them under `pretrained-models/` .
 
 2. You can use a provided python file `scripts/make-imgnet-subset.py` to create the 10% of ImageNet-1K data.
 
 3. Update the path of the dataset for KDEP (10% or 100% of ImageNet-1K) in `src/utils/constants.py`.
 
-4. Prepare the SVD weights for teacher models. You can download the weights we provide ([Download](https://drive.google.com/drive/folders/1iidVRanEeFXxOJcfThQIiHdJygxHEe7y?usp=sharing)) or generate using our provided script `scripts/gen_svd_weights.sh` .
+4. Prepare the SVD weights for teacher models. You can download the weights we provide ([Download](https://connecthkuhk-my.sharepoint.com/:f:/g/personal/ruifeihe_connect_hku_hk/Es4xT6QzDi9JtkFmmqXIWF4B-MAxG7z6oIDqtrZ88m5MpA?e=Jh19d1)) or generate using our provided script `scripts/gen_svd_weights.sh` .
 
    ```sh
    sh scripts/gen_svd_weights.sh imgnet_128k ex_gen_svd 0
@@ -155,6 +155,12 @@ For object detection datasets, please refer to [Detectron2](https://github.com/f
    sh TL_det_R18.sh ckpt_name
    # note the ckpt_name should be what you put into the semseg/initmodel/ in step1.
    ```
+
+## Distilled models of KDEP
+We provide some distilled models of KDEP here. 
+1. ([Download](https://connecthkuhk-my.sharepoint.com/:u:/g/personal/ruifeihe_connect_hku_hk/ES1ZvPYyRRlAoMdtwwYh_d0B7Sfl1ghBMs09mLEHVY5HqA?e=P7dpdJ)) ResNet18, KDEP(SVD+PTS) from MS-R50 teacher on 100% ImageNet-1K data for 90 epochs.
+1. ([Download](https://connecthkuhk-my.sharepoint.com/:u:/g/personal/ruifeihe_connect_hku_hk/EeteR1gfIJZAqIypbG0LgJwBJ5sRT-GAvWU8M2WOkUlsHA?e=PiN74K)) MobileNet-V2, KDEP(SVD+PTS) from MS-R50 teacher on 100% ImageNet-1K data for 90 epochs.
+
 
 ## Acknowledgement
 
