@@ -33,7 +33,7 @@ CUDA_VISIBLE_DEVICES=${card} python3 src/main.py --arch resnet18_feat_pre_relu \
  --teacher_not_finetuned \
  --fc_classes 1000 \
  --teacher_path pretrained-models/MicrosoftVision-ResNet50.pth  \
- --teacher_arch resnet50_feat_pca | tee outdir/${exp_name}/train-$now.log
+ --teacher_arch resnet50_feat_svd | tee outdir/${exp_name}/train-$now.log
 
 
 cp scripts/KDEP_MS-R50_R18.sh outdir/${exp_name}/
