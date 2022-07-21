@@ -64,7 +64,7 @@ parser.add_argument('--custom_lr_schedule', type=str, default=None, help='custom
 parser.add_argument('--KD_T', type=float, default=4, help='Temperature in Knowledge Distillation.')
 parser.add_argument('--KD_T_mid', type=float, default=4, help='Temperature in Knowledge Distillation.')
 parser.add_argument('--cluster_KD_T', type=float, default=4, help='Temperature in Knowledge Distillation.')
-parser.add_argument('--KD_a', type=float, default=1.0, help='Balancing weight between losses in KD.')
+parser.add_argument('--KD_a', type=float, default=0.0, help='Balancing weight between losses in KD.')
 parser.add_argument('--loss_w', type=float, default=0.0, help='Balancing weight between losses in KD.')
 parser.add_argument('--KD_c', type=float, default=0.0, help='Balancing weight between losses in KD.')
 parser.add_argument('--KD_r', type=float, default=0.0, help='Balancing weight between losses in KD.')
